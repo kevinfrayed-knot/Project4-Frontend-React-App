@@ -2,14 +2,13 @@
 
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
 import HomePage from './components/HomePage/HomePage';
 import LoginPage from './components/Auth/LoginPage';
 import RegisterPage from './components/Auth/RegisterPage';
 import CategoryPage from './components/CategoryPage/CategoryPage';
 import NewQuestionForm from './components/CategoryPage/NewQuestionForm';
 import QuestionDetailPage from './components/QuestionDetailPage/QuestionsDetailPage';
-import NotFound from './NotFound';
+import NotFound from './NotFound'; // Ensure this path is correct
 
 function App() {
   return (
@@ -28,4 +27,5 @@ function App() {
 }
 
 export default App;
+
 
