@@ -6,6 +6,7 @@ import HomePage from './components/HomePage/HomePage';
 import LoginPage from './components/Auth/LoginPage';
 import RegisterPage from './components/Auth/RegisterPage';
 import CategoryPage from './components/CategoryPage/CategoryPage';
+import NewCategoryForm from './components/CategoryPage/NewCategoryForm';
 import NewQuestionForm from './components/CategoryPage/NewQuestionForm';
 import QuestionDetailPage from './components/QuestionDetailPage/QuestionsDetailPage';
 import NotFound from './NotFound'; // Ensure this path is correct
@@ -18,7 +19,8 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/categories" element={<CategoryPage />} />
-        <Route path="/categories/new" element={<NewQuestionForm />} />
+        <Route path="/categories/new" element={<NewCategoryForm />} />
+        <Route path="/questions/new" element={<NewQuestionForm />} />
         <Route path="/questions/:id" element={<QuestionDetailPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
@@ -27,5 +29,6 @@ function App() {
 }
 
 export default App;
+
 
 

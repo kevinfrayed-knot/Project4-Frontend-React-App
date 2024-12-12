@@ -1,40 +1,36 @@
 
 
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import axios from '../../axiosConfig';
 
 function CategoryList() {
   const [categories, setCategories] = useState([]);
-  const [error, setError] = useState('');
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/api/categories');
+        const response = await axios.get('/categories');
         setCategories(response.data);
       } catch (err) {
-        setError('Failed to fetch categories');
+        setError(err.message);
       }
     };
 
     fetchCategories();
   }, []);
 
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   return (
     <div>
       <h2>Categories</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
       <ul>
-        {categories.length > 0 ? (
-          categories.map((category) => (
-            <li key={category._id}>
-              <Link to={`/categories/${category._id}`}>{category.name}</Link>
-            </li>
-          ))
-        ) : (
-          <p>No categories available.</p>
-        )}
+        {categories.map(category => (
+          <li key={category._id}>{category.name}</li>
+        ))}
       </ul>
     </div>
   );
