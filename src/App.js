@@ -13,7 +13,7 @@ import NotFound from './NotFound'; // Ensure this path is correct
 
 function App() {
   return (
-    <Router>
+    <Router basename="/Project4-Frontend-React-App">
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
