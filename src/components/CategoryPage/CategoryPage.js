@@ -20,9 +20,10 @@ const CategoryPage = () => {
         console.error(err);
       }
     };
-
+  
     fetchCategories();
-  }, []);
+  }, []); // Ensure the dependency array is empty to avoid infinite re-renders
+  
 
   return (
     <div>
