@@ -15,14 +15,14 @@ function App() {
   return (
     <Router basename="/Project4-Frontend-React-App/">
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/categories" element={<CategoryPage />} />
-        <Route path="/categories/new" element={<NewCategoryForm />} />
-        <Route path="/questions/new" element={<NewQuestionForm />} />
-        <Route path="/questions/:id" element={<QuestionDetailPage />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="" element={<HomePage />} />
+        <Route path="login" element={<LoginPage />} />
+        <Route path="register" element={<RegisterPage />} />
+        <Route path="categories" element={<CategoryPage />} />
+        <Route path="categories/new" element={<NewCategoryForm />} />
+        <Route path="questions/new" element={<NewQuestionForm />} />
+        <Route path="questions/:id" element={<QuestionDetailPage />} />
+        <Route path="*" element={<NotFound />} /> 
       </Routes>
     </Router>
   );
