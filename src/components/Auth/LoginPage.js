@@ -19,6 +19,9 @@ function LoginPage() {
         password,
       });
 
+      // Log the response to inspect it
+      console.log(response);
+
       // Store the JWT token in localStorage
       localStorage.setItem('token', response.data.token);
 
