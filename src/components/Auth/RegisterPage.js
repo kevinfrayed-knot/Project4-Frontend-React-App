@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 function RegisterPage() {
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
@@ -20,15 +21,16 @@ function RegisterPage() {
     }
 
     try {
-      await axios.post('http://localhost:8080/api/auth/register', {
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/register`, {
         username,
+        email,
         password,
       });
 
       // Redirect to the login page after successful registration
       navigate('/login');
     } catch (err) {
-      setError('Registration failed. Username may already exist.');
+      setError(err.response?.data?.message || 'Registration failed. Username or email may already exist.');
     }
   };
 
@@ -42,6 +44,16 @@ function RegisterPage() {
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+        </div>
+
+        <div>
+          <label>Email:</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
