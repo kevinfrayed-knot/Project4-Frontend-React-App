@@ -1,8 +1,8 @@
 
 
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import axiosInstance from '../../axiosConfig'; // Import the centralized axios configuration
 
 function LoginPage() {
   const [username, setUsername] = useState('');
@@ -12,8 +12,9 @@ function LoginPage() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
     try {
-      const response = await axios.post('http://localhost:8080/api/auth/login', {
+      const response = await axiosInstance.post('/auth/login', {
         username,
         password,
       });
@@ -23,7 +24,9 @@ function LoginPage() {
 
       // Redirect to the homepage after successful login
       navigate('/');
+
     } catch (err) {
+      console.error(err);
       setError('Invalid username or password');
     }
   };
