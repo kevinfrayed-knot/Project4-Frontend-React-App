@@ -1,35 +1,27 @@
 
 
 import React from 'react';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from './components/HomePage/HomePage';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom'; // Changed to HashRouter
+import NavBar from './components/Common/NavBar';
 import LoginPage from './components/Auth/LoginPage';
 import RegisterPage from './components/Auth/RegisterPage';
-import CategoryPage from './components/CategoryPage/CategoryPage';
-import NewCategoryForm from './components/CategoryPage/NewCategoryForm';
-import NewQuestionForm from './components/CategoryPage/NewQuestionForm';
-import QuestionDetailPage from './components/QuestionDetailPage/QuestionsDetailPage';
-import NotFound from './NotFound';
+import HomePage from './components/HomePage/HomePage';
+import { AuthProvider } from './context/AuthContext'; // Ensure this import is correct
 
 function App() {
   return (
-    <Router>
-  <Routes>
-    <Route path="/" element={<HomePage />} />
-    <Route path="/login" element={<LoginPage />} />
-    <Route path="/register" element={<RegisterPage />} />
-    <Route path="/categories" element={<CategoryPage />} />
-    <Route path="/categories/new" element={<NewCategoryForm />} />
-    <Route path="/questions/new" element={<NewQuestionForm />} />
-    <Route path="/questions/:id" element={<QuestionDetailPage />} />
-    <Route path="*" element={<NotFound />} />
-  </Routes>
-</Router>
+   
+      <AuthProvider>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+        </Routes>
+      </AuthProvider>
+   
   );
 }
 
 export default App;
-
-
-
 

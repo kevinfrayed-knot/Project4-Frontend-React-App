@@ -1,13 +1,18 @@
 
 
-import React, { useState } from 'react';
+// src/components/Auth/LoginPage.js
+
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axiosInstance from '../../axiosConfig'; // Import the centralized axios configuration
+import { AuthContext } from '../../context/AuthContext';
+import axiosInstance from '../../axiosConfig'; // Adjust the path if needed
+
 
 function LoginPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -19,15 +24,8 @@ function LoginPage() {
         password,
       });
 
-      // Log the response to inspect it
-      console.log(response);
-
-      // Store the JWT token in localStorage
-      localStorage.setItem('token', response.data.token);
-
-      // Redirect to the homepage after successful login
-      navigate('/');
-
+      login(response.data.token);
+      navigate('/'); // Navigate after successful login
     } catch (err) {
       console.error(err);
       setError('Invalid username or password');
