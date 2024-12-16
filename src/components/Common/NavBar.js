@@ -2,32 +2,23 @@
 
 // src/components/Common/NavBar.js
 
-import React, { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthContext';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-function NavBar() {
-  const { isAuthenticated, logout } = useContext(AuthContext);
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    logout();
-    navigate('/login'); // Navigate after logout
-  };
-
+const NavBar = () => {
   return (
     <nav>
-      <a href="/">Home</a>
-      {isAuthenticated ? (
-        <button onClick={handleLogout}>Logout</button>
-      ) : (
-        <>
-          <a href="/login">Login</a>
-          <a href="/register">Register</a>
-        </>
-      )}
+      <ul>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/categories">View Categories</Link></li>
+        <li><Link to="/categories/new">Create New Category</Link></li>
+        <li><Link to="/questions/new">Create New Question</Link></li>
+        <li><Link to="/login">Login</Link></li>
+        <li><Link to="/register">Register</Link></li>
+      </ul>
     </nav>
   );
 };
 
 export default NavBar;
+
