@@ -1,7 +1,7 @@
 
 
 import React from 'react';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom'; // Changed to HashRouter
+import { HashRouter as Routes, Route } from 'react-router-dom'; // Changed to HashRouter
 import NavBar from './components/Common/NavBar';
 import LoginPage from './components/Auth/LoginPage';
 import RegisterPage from './components/Auth/RegisterPage';
