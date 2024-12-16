@@ -1,27 +1,35 @@
 
 
 import React from 'react';
-import { HashRouter as Routes, Route } from 'react-router-dom'; // Changed to HashRouter
+import { Routes, Route } from 'react-router-dom';
 import NavBar from './components/Common/NavBar';
 import LoginPage from './components/Auth/LoginPage';
 import RegisterPage from './components/Auth/RegisterPage';
 import HomePage from './components/HomePage/HomePage';
-import { AuthProvider } from './context/AuthContext'; // Ensure this import is correct
+import CategoryPage from './components/CategoryPage/CategoryPage';
+import NewCategoryForm from './components/CategoryPage/NewCategoryForm';
+import NewQuestionForm from './components/CategoryPage/NewQuestionForm'; // Import NewQuestionForm
+import { AuthProvider } from './context/AuthContext';
 
 function App() {
   return (
-   
-      <AuthProvider>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-        </Routes>
-      </AuthProvider>
-   
+    <AuthProvider>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/categories" element={<CategoryPage />} />
+        <Route path="/categories/new" element={<NewCategoryForm />} />
+        <Route path="/questions/new" element={<NewQuestionForm />} /> {/* Add this line */}
+      </Routes>
+    </AuthProvider>
   );
 }
 
 export default App;
+
+
+
+
 
