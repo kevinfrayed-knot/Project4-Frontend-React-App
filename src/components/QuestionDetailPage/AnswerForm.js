@@ -1,15 +1,26 @@
 
 
 import React, { useState } from 'react';
+import axiosInstance from '../../axiosConfig'; // Ensure axiosInstance is correctly imported
 
-const AnswerForm = ({ onSubmit }) => {
+const AnswerForm = ({ questionId, onAnswerAdded }) => {
   const [answer, setAnswer] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (answer.trim()) {
-      onSubmit(answer);
-      setAnswer('');
+      try {
+        await axiosInstance.post('/answers', {
+          questionId,
+          content: answer,
+        });
+
+        setAnswer('');
+        if (onAnswerAdded) onAnswerAdded(); // Refresh the answers list after submission
+      } catch (error) {
+        console.error('Error submitting answer:', error);
+      }
     }
   };
 
