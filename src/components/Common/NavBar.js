@@ -9,7 +9,7 @@ const NavBar = () => {
 
   return (
     <nav>
-      <ul>
+      <ul style={{ display: 'flex', listStyle: 'none', padding: 0 }}>
         <li>
           <Link to="/">Home</Link>
         </li>
@@ -34,7 +34,19 @@ const NavBar = () => {
         )}
         {isAuthenticated && (
           <li>
-            <button onClick={logout} style={{ background: 'none', border: 'none', color: 'blue', cursor: 'pointer' }}>
+            <button
+              onClick={logout}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: 'blue',
+                cursor: 'pointer',
+                fontSize: 'inherit',
+                textDecoration: 'underline',
+                padding: 0,
+                marginLeft: '10px',
+              }}
+            >
               Logout
             </button>
           </li>
@@ -45,5 +57,3 @@ const NavBar = () => {
 };
 
 export default NavBar;
-
-

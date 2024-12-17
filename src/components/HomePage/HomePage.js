@@ -2,34 +2,53 @@
 
 // src/components/HomePage/HomePage.js
 
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { AuthContext } from '../../context/AuthContext';
+import CategoryList from '../HomePage/CategoryList';
+import QuestionList from '../CategoryPage/QuestionList';
+import QuestionDetailPage from '../QuestionDetailPage/QuestionsDetailPage';
+import LoginPage from '../Auth/LoginPage';
 
 const HomePage = () => {
+  const { isAuthenticated } = useContext(AuthContext);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedQuestionId, setSelectedQuestionId] = useState(null);
+
   return (
     <div>
-      <h1>Welcome to the Forum App</h1>
-      <p>Explore the categories and join the discussion!</p>
+      {isAuthenticated ? (
+        <div style={{ display: 'flex' }}>
+          {/* Vertical Category Tabs */}
+          <div style={{ width: '20%', borderRight: '1px solid #ccc', padding: '10px' }}>
+            <h2>Categories</h2>
+            <CategoryList onSelectCategory={(categoryId) => setSelectedCategory(categoryId)} />
+          </div>
 
-      <div>
-        <Link to="/categories">
-          <button>View Categories</button>
-        </Link>
-        <Link to="/categories/new">
-          <button>Create New Category</button>
-        </Link>
-        <Link to="/questions/new">
-          <button>Create New Question</button>
-        </Link>
-        <Link to="/login">
-          <button>Login</button>
-        </Link>
-        <Link to="/register">
-          <button>Register</button>
-        </Link>
-      </div>
+          {/* Main Area for Questions and Question Details */}
+          <div style={{ width: '80%', padding: '10px' }}>
+            <h2>Questions</h2>
+            {selectedCategory ? (
+              selectedQuestionId ? (
+                <QuestionDetailPage questionId={selectedQuestionId} />
+              ) : (
+                <QuestionList
+                  categoryId={selectedCategory}
+                  onSelectQuestion={(questionId) => setSelectedQuestionId(questionId)}
+                />
+              )
+            ) : (
+              <p>Please select a category to view questions.</p>
+            )}
+          </div>
+        </div>
+      ) : (
+        // If not authenticated, show the login page
+        <LoginPage />
+      )}
     </div>
   );
 };
 
 export default HomePage;
+
+

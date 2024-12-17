@@ -1,22 +1,22 @@
 
 
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axiosInstance from '../../axiosConfig'; // Use axios instance for consistency
 import QuestionCard from '../Common/QuestionCard';
 
-const QuestionList = ({ categoryId }) => {
+const QuestionList = ({ categoryId, onSelectQuestion }) => {
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:8080/api/questions/category/${categoryId}`
-        );
+        const response = await axiosInstance.get(`/questions/category/${categoryId}`);
         setQuestions(response.data);
-      } catch (error) {
-        console.error('Error fetching questions:', error);
+      } catch (err) {
+        console.error('Error fetching questions:', err);
+        setError('Failed to fetch questions. Please try again later.');
       } finally {
         setLoading(false);
       }
@@ -25,20 +25,31 @@ const QuestionList = ({ categoryId }) => {
     fetchQuestions();
   }, [categoryId]);
 
+  if (loading) {
+    return <p>Loading questions...</p>;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
+
   return (
     <div>
       <h3>Questions</h3>
-      {loading ? (
-        <p>Loading questions...</p>
-      ) : questions.length > 0 ? (
+      {questions.length > 0 ? (
         questions.map((question) => (
-          <QuestionCard key={question._id} question={question} />
+          <QuestionCard
+            key={question._id}
+            question={question}
+            onClick={() => onSelectQuestion(question._id)} // Inserted here
+          />
         ))
       ) : (
         <p>No questions available for this category.</p>
       )}
     </div>
   );
+  
 };
 
 export default QuestionList;

@@ -1,7 +1,7 @@
 
 
 import React, { useState, useEffect, useCallback } from 'react';
-import axiosInstance from '../utils/axiosConfig';
+import axiosInstance from '../../axiosConfig'; // Correct relative path based on file structure
 import AnswerForm from './AnswerForm';
 import AnswerList from './AnswerList';
 import { useParams } from 'react-router-dom';
