@@ -1,16 +1,16 @@
 
 
 import React, { useEffect, useState } from 'react';
-import axios from '../../axiosConfig';
+import axiosInstance from '../../axiosConfig';
 
-function CategoryList() {
+const CategoryList = ({ onSelectCategory }) => {
   const [categories, setCategories] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get('/categories');
+        const response = await axiosInstance.get('/categories');
         setCategories(response.data);
       } catch (err) {
         setError(err.message);
@@ -28,12 +28,18 @@ function CategoryList() {
     <div>
       <h2>Categories</h2>
       <ul>
-        {categories.map(category => (
-          <li key={category._id}>{category.name}</li>
+        {categories.map((category) => (
+          <li
+            key={category._id}
+            onClick={() => onSelectCategory(category._id)}
+            style={{ cursor: 'pointer', color: 'blue' }}
+          >
+            {category.name}
+          </li>
         ))}
       </ul>
     </div>
   );
-}
+};
 
 export default CategoryList;
