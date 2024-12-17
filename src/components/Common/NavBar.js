@@ -9,20 +9,24 @@ const NavBar = () => {
 
   return (
     <nav>
-      <ul style={{ display: 'flex', listStyle: 'none', padding: 0 }}>
+      <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/categories/new">New Category</Link>
         </li>
         <li>
-          <Link to="/categories">View Categories</Link>
+          <Link to="/questions/new">New Question</Link>
         </li>
-        <li>
-          <Link to="/categories/new">Create New Category</Link>
-        </li>
-        <li>
-          <Link to="/questions/new">Create New Question</Link>
-        </li>
-        {!isAuthenticated && (
+
+        {isAuthenticated ? (
+          <li>
+            <button
+              onClick={logout}
+              style={{ background: 'none', border: 'none', color: 'blue', cursor: 'pointer' }}
+            >
+              Logout
+            </button>
+          </li>
+        ) : (
           <>
             <li>
               <Link to="/login">Login</Link>
@@ -32,28 +36,10 @@ const NavBar = () => {
             </li>
           </>
         )}
-        {isAuthenticated && (
-          <li>
-            <button
-              onClick={logout}
-              style={{
-                background: 'none',
-                border: 'none',
-                color: 'blue',
-                cursor: 'pointer',
-                fontSize: 'inherit',
-                textDecoration: 'underline',
-                padding: 0,
-                marginLeft: '10px',
-              }}
-            >
-              Logout
-            </button>
-          </li>
-        )}
       </ul>
     </nav>
   );
 };
 
 export default NavBar;
+

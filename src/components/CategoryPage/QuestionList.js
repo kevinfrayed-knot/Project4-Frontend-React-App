@@ -1,7 +1,9 @@
 
 
+// src/components/CategoryPage/QuestionList.js
+
 import React, { useEffect, useState } from 'react';
-import axiosInstance from '../../axiosConfig'; // Use axios instance for consistency
+import axiosInstance from '../../axiosConfig';
 import QuestionCard from '../Common/QuestionCard';
 
 const QuestionList = ({ categoryId, onSelectQuestion }) => {
@@ -12,6 +14,7 @@ const QuestionList = ({ categoryId, onSelectQuestion }) => {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
+        console.log('categoryId:', categoryId); // Log categoryId to verify its value
         const response = await axiosInstance.get(`/questions/category/${categoryId}`);
         setQuestions(response.data);
       } catch (err) {
@@ -22,7 +25,9 @@ const QuestionList = ({ categoryId, onSelectQuestion }) => {
       }
     };
 
-    fetchQuestions();
+    if (categoryId) {
+      fetchQuestions();
+    }
   }, [categoryId]);
 
   if (loading) {
@@ -38,18 +43,15 @@ const QuestionList = ({ categoryId, onSelectQuestion }) => {
       <h3>Questions</h3>
       {questions.length > 0 ? (
         questions.map((question) => (
-          <QuestionCard
-            key={question._id}
-            question={question}
-            onClick={() => onSelectQuestion(question._id)} // Inserted here
-          />
+          <QuestionCard key={question._id} question={question} onClick={() => onSelectQuestion(question._id)} />
         ))
       ) : (
         <p>No questions available for this category.</p>
       )}
     </div>
   );
-  
 };
 
 export default QuestionList;
+
+

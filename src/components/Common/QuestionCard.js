@@ -27,4 +27,3 @@ const QuestionCard = ({ question, onClick }) => {
 };
 
 export default QuestionCard;
-
