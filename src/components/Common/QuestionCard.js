@@ -22,6 +22,7 @@ const QuestionCard = ({ question, onClick }) => {
       <Link to={`/questions/${question._id}`} onClick={(e) => e.stopPropagation()}>
         View Details
       </Link>
+
     </div>
   );
 };

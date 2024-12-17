@@ -1,18 +1,22 @@
 
 
 // src/components/HomePage/HomePage.js
-
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import CategoryList from '../HomePage/CategoryList';
 import QuestionList from '../CategoryPage/QuestionList';
-import QuestionDetailPage from '../QuestionDetailPage/QuestionsDetailPage';
+import QuestionsDetailPage from '../QuestionDetailPage/QuestionsDetailPage'; // Correct import
 import LoginPage from '../Auth/LoginPage';
 
 const HomePage = () => {
   const { isAuthenticated } = useContext(AuthContext);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedQuestionId, setSelectedQuestionId] = useState(null);
+
+  const onSelectQuestion = (questionId) => {
+    console.log('Navigating to question with ID:', questionId); // Debugging statement
+    setSelectedQuestionId(questionId);
+  };
 
   return (
     <div>
@@ -24,20 +28,16 @@ const HomePage = () => {
             <CategoryList onSelectCategory={(categoryId) => setSelectedCategory(categoryId)} />
           </div>
 
-          {/* Main Area for Questions or Question Details */}
+          {/* Main Area for Questions and Question Details */}
           <div style={{ width: '80%', padding: '10px' }}>
             <h2>Questions</h2>
             {selectedCategory ? (
               <>
-                <QuestionList 
-                  categoryId={selectedCategory} 
-                  onSelectQuestion={(questionId) => setSelectedQuestionId(questionId)} 
-                />
-                {/* Display Question Details if a question is selected */}
+                <QuestionList categoryId={selectedCategory} onSelectQuestion={onSelectQuestion} />
                 {selectedQuestionId && (
                   <div style={{ marginTop: '20px' }}>
                     <h2>Question Details</h2>
-                    <QuestionDetailPage questionId={selectedQuestionId} />
+                    <QuestionsDetailPage questionId={selectedQuestionId} />
                   </div>
                 )}
               </>
@@ -47,7 +47,6 @@ const HomePage = () => {
           </div>
         </div>
       ) : (
-        // If not authenticated, show the login page
         <LoginPage />
       )}
     </div>

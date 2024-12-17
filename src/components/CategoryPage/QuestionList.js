@@ -14,7 +14,7 @@ const QuestionList = ({ categoryId, onSelectQuestion }) => {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        console.log('categoryId:', categoryId); // Log categoryId to verify its value
+        console.log('categoryId:', categoryId);
         const response = await axiosInstance.get(`/questions/category/${categoryId}`);
         setQuestions(response.data);
       } catch (err) {
@@ -43,7 +43,11 @@ const QuestionList = ({ categoryId, onSelectQuestion }) => {
       <h3>Questions</h3>
       {questions.length > 0 ? (
         questions.map((question) => (
-          <QuestionCard key={question._id} question={question} onClick={() => onSelectQuestion(question._id)} />
+          <QuestionCard 
+            key={question._id} 
+            question={question} 
+            onClick={() => onSelectQuestion(question._id)}  // Ensure this line is correct
+          />
         ))
       ) : (
         <p>No questions available for this category.</p>
@@ -53,5 +57,6 @@ const QuestionList = ({ categoryId, onSelectQuestion }) => {
 };
 
 export default QuestionList;
+
 
 

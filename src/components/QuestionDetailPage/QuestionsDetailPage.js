@@ -7,19 +7,24 @@ import AnswerList from './AnswerList';
 import { useParams } from 'react-router-dom';
 
 const QuestionDetailPage = () => {
-  const { id } = useParams();
+  const { questionId } = useParams();
   const [answers, setAnswers] = useState([]);
   const [question, setQuestion] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Log the questionId to verify its value
+  console.log('Question ID:', questionId);
+
   // Stable fetch function using useCallback
   const fetchQuestionAndAnswers = useCallback(async () => {
     try {
-      const questionResponse = await axiosInstance.get(`/questions/${id}`);
+      console.log(`Fetching question with ID: ${questionId}`);
+
+      const questionResponse = await axiosInstance.get(`/questions/${questionId}`);
       setQuestion(questionResponse.data);
 
-      const answersResponse = await axiosInstance.get(`/answers/${id}`);
+      const answersResponse = await axiosInstance.get(`/answers/${questionId}`);
       setAnswers(answersResponse.data);
     } catch (err) {
       console.error('Error fetching question or answers:', err);
@@ -27,7 +32,7 @@ const QuestionDetailPage = () => {
     } finally {
       setLoading(false);
     }
-  }, [id]);
+  }, [questionId]);
 
   useEffect(() => {
     fetchQuestionAndAnswers();
@@ -45,12 +50,12 @@ const QuestionDetailPage = () => {
       {question && (
         <>
           <h2>{question.content}</h2>
-          <p>Asked by: {question.userId.username}</p>
+          <p>Asked by: {question.userId?.username || 'Anonymous'}</p>
         </>
       )}
 
       <h3>Submit Your Answer</h3>
-      <AnswerForm questionId={id} onAnswerAdded={handleAddAnswer} />
+      <AnswerForm questionId={questionId} onAnswerAdded={handleAddAnswer} />
 
       <h3>Answers</h3>
       <AnswerList answers={answers} />
