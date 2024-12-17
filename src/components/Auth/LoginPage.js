@@ -17,20 +17,30 @@ function LoginPage() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
+  
     try {
       const response = await axiosInstance.post('/auth/login', {
         username,
         password,
       });
-
-      login(response.data.token);
-      navigate('/'); // Navigate after successful login
+  
+      // Store the token in sessionStorage
+      const token = response.data.token;
+      if (token) {
+        sessionStorage.setItem('token', token);
+        console.log('Token stored in sessionStorage:', token);
+        login(token); // Call the login function from AuthContext
+        navigate('/'); // Navigate after successful login
+      } else {
+        console.error('No token received from login response');
+      }
     } catch (err) {
-      console.error(err);
+      console.error('Login failed:', err);
       setError('Invalid username or password');
     }
   };
+  
+  
 
   return (
     <div>

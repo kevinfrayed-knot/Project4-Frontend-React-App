@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import axiosInstance from '../../axiosConfig'; // Import axiosInstance
+
 
 const NewQuestionForm = ({ onQuestionAdded, userId }) => {
   const [title, setTitle] = useState('');
@@ -26,20 +28,22 @@ const NewQuestionForm = ({ onQuestionAdded, userId }) => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
+    console.log('Token in sessionStorage before POST request:', sessionStorage.getItem('token'));
+  
     try {
-      // Include userId in the request payload
-      await axios.post('http://localhost:8080/api/questions', {
+      const response = await axiosInstance.post('/questions', {
         title,
         content,
-        categoryId: selectedCategory,  // Selected category
-        userId,  // Current user's ID
+        categoryId: selectedCategory,
+        userId,
       });
-      
-      // Clear the form after submission
+  
+      console.log('Question added successfully:', response.data);
       setTitle('');
       setContent('');
       setSelectedCategory('');
-      
+  
       if (onQuestionAdded) {
         onQuestionAdded();
       }
@@ -47,6 +51,7 @@ const NewQuestionForm = ({ onQuestionAdded, userId }) => {
       console.error('Error adding new question:', error);
     }
   };
+  
 
   return (
     <form onSubmit={handleSubmit}>
