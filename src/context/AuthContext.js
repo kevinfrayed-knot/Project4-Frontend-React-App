@@ -6,7 +6,7 @@
 
 import React, { createContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { jwtDecode } from 'jwt-decode'; // Import jwt-decode to decode the token
+import { jwtDecode } from 'jwt-decode'; // Import jwt-decode(named import) to decode the token
 
 // Create the AuthContext
 export const AuthContext = createContext();
