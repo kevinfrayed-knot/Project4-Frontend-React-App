@@ -1,6 +1,10 @@
 .App {
-  text-align: center;
+  display: flex;
+  height: 100vh; /* Ensure the App takes full viewport height */
+  width: 100%;   /* Ensure the App takes full viewport width */
+  margin: 0;     /* Remove any default margin */
 }
+
 
 .App-logo {
   height: 40vmin;

@@ -50,20 +50,20 @@ const QuestionsDetailPage = () => {
   return (
     <div className="question-detail-container">
       {question && (
-        <div className="question-content">
-          <h2 className="question-title">{question.content}</h2>
+        <div className="question-detail-header">
+          <h2 className="question-content">{question.content}</h2>
           <p className="question-author">
             <strong>Asked by:</strong> {question.userId?.username || 'Anonymous'}
           </p>
         </div>
       )}
 
-      <div className="submit-answer-section">
+      <div className="submit-answer-form">
         <h3 className="submit-answer-title">Submit Your Answer</h3>
         <AnswerForm questionId={questionId} onAnswerAdded={handleAddAnswer} />
       </div>
 
-      <div className="answers-section">
+      <div className="answer-section">
         <h3 className="answers-title">Answers</h3>
         <AnswerList answers={answers} />
       </div>
@@ -72,4 +72,3 @@ const QuestionsDetailPage = () => {
 };
 
 export default QuestionsDetailPage;
-
