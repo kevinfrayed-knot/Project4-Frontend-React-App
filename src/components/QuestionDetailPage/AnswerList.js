@@ -12,9 +12,12 @@ const AnswerList = ({ answers }) => {
         <p className="no-answers-message">No answers yet. Be the first to respond!</p>
       ) : (
         <ul className="answer-list">
-          {answers.map((answer, index) => (
-            <li key={index} className="answer-item">
-              {answer}
+          {answers.map((answer) => (
+            <li key={answer._id} className="answer-item">
+              <p className="answer-content">{answer.content}</p>
+              <small className="answer-author">
+                By: {answer.userId?.username || 'Anonymous'}
+              </small>
             </li>
           ))}
         </ul>
@@ -24,4 +27,5 @@ const AnswerList = ({ answers }) => {
 };
 
 export default AnswerList;
+
 
