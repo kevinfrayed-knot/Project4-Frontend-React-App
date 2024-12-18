@@ -1,4 +1,4 @@
-I've updated the `README.md` to reflect the server and React app hosting for both local development and production environments. Let me know if you need any further edits:
+
 
 ---
 
