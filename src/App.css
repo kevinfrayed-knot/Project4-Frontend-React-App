@@ -38,7 +38,7 @@
 }
 
 
-/*NavBar.js styles*/
+/*NavBar.js styles
 navbar {
   display: 'flex';
   justify-content: 'space-between';
@@ -67,5 +67,5 @@ button {
   padding: '0.5rem 1rem';
   cursor: 'pointer';
   border-radius: 4px;
-}
+}*/
 

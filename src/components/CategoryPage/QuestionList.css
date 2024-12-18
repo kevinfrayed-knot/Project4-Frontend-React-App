@@ -1,0 +1,25 @@
+
+
+/* src/components/CategoryPage/QuestionList.css */
+
+.question-list {
+  padding: 20px;
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.question-list-title {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.loading-message,
+.error-message,
+.no-questions-message {
+  font-size: 1rem;
+  color: #555;
+  text-align: center;
+  margin-top: 20px;
+}

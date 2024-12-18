@@ -1,38 +1,37 @@
 
 
+// src/components/Common/NavBar.js
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
+import './NavBar.css';
 
 const NavBar = () => {
   const { isAuthenticated, logout } = useContext(AuthContext);
 
   return (
-    <nav>
-      <ul>
-        <li>
-          <Link to="/categories/new">New Category</Link>
+    <nav className="navbar">
+      <ul className="nav-links">
+        <li className="nav-item">
+          <Link to="/categories/new" className="nav-link">New Category</Link>
         </li>
-        <li>
-          <Link to="/questions/new">New Question</Link>
+        <li className="nav-item">
+          <Link to="/questions/new" className="nav-link">New Question</Link>
         </li>
 
         {isAuthenticated ? (
-          <li>
-            <button
-              onClick={logout}
-              style={{ background: 'none', border: 'none', color: 'blue', cursor: 'pointer' }}
-            >
+          <li className="nav-item">
+            <button onClick={logout} className="nav-button">
               Logout
             </button>
           </li>
         ) : (
           <>
-            <li>
-              <Link to="/login">Login</Link>
+            <li className="nav-item">
+              <Link to="/login" className="nav-link">Login</Link>
             </li>
-            <li>
-              <Link to="/register">Register</Link>
+            <li className="nav-item">
+              <Link to="/register" className="nav-link">Register</Link>
             </li>
           </>
         )}
@@ -42,4 +41,5 @@ const NavBar = () => {
 };
 
 export default NavBar;
+
 

@@ -1,7 +1,9 @@
 
 
+// src/components/QuestionDetailPage/AnswerForm.js
 import React, { useState } from 'react';
 import axiosInstance from '../../axiosConfig'; // Ensure axiosInstance is correctly imported
+import './AnswerForm.css';
 
 const AnswerForm = ({ questionId, onAnswerAdded }) => {
   const [answer, setAnswer] = useState('');
@@ -25,8 +27,9 @@ const AnswerForm = ({ questionId, onAnswerAdded }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="answer-form" onSubmit={handleSubmit}>
       <textarea
+        className="answer-textarea"
         value={answer}
         onChange={(e) => setAnswer(e.target.value)}
         placeholder="Write your answer here..."
@@ -34,7 +37,9 @@ const AnswerForm = ({ questionId, onAnswerAdded }) => {
         cols="50"
       />
       <br />
-      <button type="submit">Submit Answer</button>
+      <button className="answer-submit-button" type="submit">
+        Submit Answer
+      </button>
     </form>
   );
 };

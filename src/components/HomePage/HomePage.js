@@ -7,6 +7,7 @@ import CategoryList from '../HomePage/CategoryList';
 import QuestionList from '../CategoryPage/QuestionList';
 import QuestionsDetailPage from '../QuestionDetailPage/QuestionsDetailPage'; // Correct import
 import LoginPage from '../Auth/LoginPage';
+import './HomePage.css';
 
 const HomePage = () => {
   const { isAuthenticated } = useContext(AuthContext);
@@ -14,23 +15,23 @@ const HomePage = () => {
   const [selectedQuestionId, setSelectedQuestionId] = useState(null);
 
   const onSelectQuestion = (questionId) => {
-    console.log('Navigating to question with ID:', questionId); // Debugging statement
+    console.log('Navigating to question with ID:', questionId);
     setSelectedQuestionId(questionId);
   };
 
   return (
     <div>
       {isAuthenticated ? (
-        <div style={{ display: 'flex' }}>
-          {/* Vertical Category Tabs */}
-          <div style={{ width: '20%', borderRight: '1px solid #ccc', padding: '10px' }}>
-            <h2>Categories</h2>
+        <div className="homepage-container">
+          {/* Sidebar for Categories */}
+          <div className="sidebar">
+            <h2 className="categories-title">Categories</h2>
             <CategoryList onSelectCategory={(categoryId) => setSelectedCategory(categoryId)} />
           </div>
 
-          {/* Main Area for Questions and Question Details */}
-          <div style={{ width: '80%', padding: '10px' }}>
-            <h2>Questions</h2>
+          {/* Main Content for Questions and Question Details */}
+          <div className="main-content">
+            <h2 className="questions-title">Questions</h2>
             {selectedCategory ? (
               <>
                 <QuestionList categoryId={selectedCategory} onSelectQuestion={onSelectQuestion} />
@@ -54,3 +55,4 @@ const HomePage = () => {
 };
 
 export default HomePage;
+

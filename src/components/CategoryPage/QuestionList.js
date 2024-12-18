@@ -1,10 +1,11 @@
 
 
 // src/components/CategoryPage/QuestionList.js
-
 import React, { useEffect, useState } from 'react';
 import axiosInstance from '../../axiosConfig';
 import QuestionCard from '../Common/QuestionCard';
+import './QuestionList.css';
+
 
 const QuestionList = ({ categoryId, onSelectQuestion }) => {
   const [questions, setQuestions] = useState([]);

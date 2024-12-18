@@ -1,12 +1,14 @@
 
 
+// src/components/QuestionDetailPage/QuestionsDetailPage.js
 import React, { useState, useEffect, useCallback } from 'react';
 import axiosInstance from '../../axiosConfig'; // Correct relative path based on file structure
 import AnswerForm from './AnswerForm';
 import AnswerList from './AnswerList';
 import { useParams } from 'react-router-dom';
+import './QuestionsDetailPage.css';
 
-const QuestionDetailPage = () => {
+const QuestionsDetailPage = () => {
   const { questionId } = useParams();
   const [answers, setAnswers] = useState([]);
   const [question, setQuestion] = useState(null);
@@ -42,25 +44,32 @@ const QuestionDetailPage = () => {
     fetchQuestionAndAnswers();
   };
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
+  if (loading) return <p className="loading-message">Loading...</p>;
+  if (error) return <p className="error-message">{error}</p>;
 
   return (
-    <div>
+    <div className="question-detail-container">
       {question && (
-        <>
-          <h2>{question.content}</h2>
-          <p>Asked by: {question.userId?.username || 'Anonymous'}</p>
-        </>
+        <div className="question-content">
+          <h2 className="question-title">{question.content}</h2>
+          <p className="question-author">
+            <strong>Asked by:</strong> {question.userId?.username || 'Anonymous'}
+          </p>
+        </div>
       )}
 
-      <h3>Submit Your Answer</h3>
-      <AnswerForm questionId={questionId} onAnswerAdded={handleAddAnswer} />
+      <div className="submit-answer-section">
+        <h3 className="submit-answer-title">Submit Your Answer</h3>
+        <AnswerForm questionId={questionId} onAnswerAdded={handleAddAnswer} />
+      </div>
 
-      <h3>Answers</h3>
-      <AnswerList answers={answers} />
+      <div className="answers-section">
+        <h3 className="answers-title">Answers</h3>
+        <AnswerList answers={answers} />
+      </div>
     </div>
   );
 };
 
-export default QuestionDetailPage;
+export default QuestionsDetailPage;
+

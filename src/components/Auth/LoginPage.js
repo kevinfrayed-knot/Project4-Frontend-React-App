@@ -6,7 +6,7 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import axiosInstance from '../../axiosConfig'; // Adjust the path if needed
-
+import './LoginPage.css';
 
 function LoginPage() {
   const [username, setUsername] = useState('');
@@ -17,13 +17,13 @@ function LoginPage() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-  
+
     try {
       const response = await axiosInstance.post('/auth/login', {
         username,
         password,
       });
-  
+
       // Store the token in sessionStorage
       const token = response.data.token;
       if (token) {
@@ -39,38 +39,39 @@ function LoginPage() {
       setError('Invalid username or password');
     }
   };
-  
-  
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <div>
-          <label>Username:</label>
+    <div className="login-container">
+      <h2 className="login-title">Login</h2>
+      <form onSubmit={handleLogin} className="login-form">
+        <div className="form-group">
+          <label className="form-label">Username:</label>
           <input
             type="text"
+            className="form-input"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
         </div>
 
-        <div>
-          <label>Password:</label>
+        <div className="form-group">
+          <label className="form-label">Password:</label>
           <input
             type="password"
+            className="form-input"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
 
-        <button type="submit">Login</button>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
+        <button type="submit" className="login-button">Login</button>
+        {error && <p className="error-message">{error}</p>}
       </form>
     </div>
   );
 }
 
 export default LoginPage;
+

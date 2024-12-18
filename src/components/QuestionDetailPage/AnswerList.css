@@ -1,0 +1,27 @@
+/* src/components/QuestionDetailPage/AnswerList.css */
+
+.answer-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .answer-item {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .answer-item:last-child {
+    border-bottom: none;
+  }
+  
+  .answer-item p {
+    margin: 0;
+    color: #444;
+  }
+  
+  .answer-item .author {
+    font-style: italic;
+    color: #777;
+    margin-top: 5px;
+  }
+  

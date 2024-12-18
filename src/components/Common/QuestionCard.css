@@ -1,0 +1,39 @@
+
+
+/* src/components/Common/QuestionCard.css */
+
+/* src/components/Common/QuestionCard.css */
+
+.question-card {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.question-card:hover {
+  background-color: #f9f9f9;
+}
+
+.question-content {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.question-author {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.view-details-link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.view-details-link:hover {
+  text-decoration: underline;
+}
+
+  

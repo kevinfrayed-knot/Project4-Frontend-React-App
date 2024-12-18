@@ -1,17 +1,21 @@
 
 
+// src/components/QuestionDetailPage/AnswerList.js
 import React from 'react';
+import './AnswerList.css';
 
 const AnswerList = ({ answers }) => {
   return (
-    <div>
-      <h3>Answers</h3>
+    <div className="answer-list-container">
+      <h3 className="answer-list-title">Answers</h3>
       {answers.length === 0 ? (
-        <p>No answers yet. Be the first to respond!</p>
+        <p className="no-answers-message">No answers yet. Be the first to respond!</p>
       ) : (
-        <ul>
+        <ul className="answer-list">
           {answers.map((answer, index) => (
-            <li key={index}>{answer}</li>
+            <li key={index} className="answer-item">
+              {answer}
+            </li>
           ))}
         </ul>
       )}
@@ -20,3 +24,4 @@ const AnswerList = ({ answers }) => {
 };
 
 export default AnswerList;
+

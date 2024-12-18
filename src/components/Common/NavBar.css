@@ -1,0 +1,23 @@
+
+
+/* src/components/Common/NavBar.css */
+
+.navbar {
+    background-color: #343a40;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+  }
+  
+  .navbar a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 15px;
+  }
+  
+  .navbar a:hover {
+    text-decoration: underline;
+  }
+  
