@@ -6,7 +6,6 @@ import axiosInstance from '../../axiosConfig';
 import QuestionCard from '../Common/QuestionCard';
 import './QuestionList.css';
 
-
 const QuestionList = ({ categoryId, onSelectQuestion }) => {
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -32,16 +31,16 @@ const QuestionList = ({ categoryId, onSelectQuestion }) => {
   }, [categoryId]);
 
   if (loading) {
-    return <p>Loading questions...</p>;
+    return <p className="loading-message">Loading questions...</p>;
   }
 
   if (error) {
-    return <p>{error}</p>;
+    return <p className="error-message">{error}</p>;
   }
 
   return (
-    <div>
-      <h3>Questions</h3>
+    <div className="question-list">
+      <h3 className="question-list-title">Questions</h3>
       {questions.length > 0 ? (
         questions.map((question) => (
           <QuestionCard 
@@ -51,13 +50,14 @@ const QuestionList = ({ categoryId, onSelectQuestion }) => {
           />
         ))
       ) : (
-        <p>No questions available for this category.</p>
+        <p className="no-questions-message">No questions available for this category.</p>
       )}
     </div>
   );
 };
 
 export default QuestionList;
+
 
 
 
