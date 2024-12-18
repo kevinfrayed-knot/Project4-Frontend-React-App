@@ -1,70 +1,152 @@
-# Getting Started with Create React App
+I've updated the `README.md` to reflect the server and React app hosting for both local development and production environments. Let me know if you need any further edits:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
 
-## Available Scripts
+# Project 4: Node.js Express Forum
 
-In the project directory, you can run:
+## Project Overview
+This project is a **forum application** built using the **3-tier architecture**. It allows users to register, log in, ask questions, and provide answers. The app demonstrates full-stack development with a **Node.js and Express backend** and a **React frontend**.
 
-### `npm start`
+## Features
+- **User Registration and Authentication**
+- **Categories for Questions**
+- **Create, Read, and Display Questions**
+- **Submit and Display Answers**
+- **Logout Functionality**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Technologies Used
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Backend
+- **Node.js**
+- **Express.js**
+- **MongoDB** (with Mongoose for ODM)
 
-### `npm test`
+### Frontend
+- **React**
+- **React Router**
+- **CSS** (Modular CSS for styling)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Other Tools
+- **Axios** for HTTP requests
+- **Git & GitHub** for version control
 
-### `npm run build`
+## Setup and Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
+- **Node.js** (v14+)
+- **MongoDB** (installed locally or using an online service like MongoDB Atlas)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Clone Repositories
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+# Clone the frontend repository
+git clone https://github.com/kevinfrayed-knot/Project4-Frontend-React-App.git
 
-### `npm run eject`
+# Clone the backend repository
+git clone https://github.com/kevinfrayed-knot/project4-backend-server.git
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Backend Setup
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. **Navigate to the backend folder**:
+   ```bash
+   cd project4-backend-server
+   ```
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+3. **Set up environment variables**:
+   Create a `.env` file with the following:
+   ```env
+   PORT=8080
+   MONGO_URI=your-mongodb-connection-string
+   JWT_SECRET=your-jwt-secret
+   ```
+4. **Start the server**:
+   ```bash
+   npm start
+   ```
+   The server will run on:
+   - **Local Development**: `http://localhost:8080`
+   - **Production**: `https://project4-backend-server.onrender.com`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Frontend Setup
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. **Navigate to the frontend folder**:
+   ```bash
+   cd Project4-Frontend-React-App
+   ```
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+3. **Start the frontend app**:
+   ```bash
+   npm start
+   ```
+   The app will run on:
+   - **Local Development**: `http://localhost:3000`
+   - **Production**: `https://kevinfrayed-knot.github.io/Project4-Frontend-React-App/`
 
-## Learn More
+## Usage Instructions
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. **Register** a new user.
+2. **Log in** with your credentials.
+3. **View categories** in the sidebar.
+4. **Select a category** to view related questions.
+5. **Ask a new question** by clicking the "New Question" button.
+6. **Submit answers** to existing questions.
+7. **Log out** to end your session.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## User Stories
 
-### Code Splitting
+### User Story 1: User Registration
+- **As a** new user,
+- **I want** to register with my username and password,
+- **So that** I can log in and participate in the forum.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### User Story 2: View and Select Categories
+- **As a** logged-in user,
+- **I want** to view a list of categories,
+- **So that** I can select a category to see related questions.
 
-### Analyzing the Bundle Size
+### User Story 3: Submit Answers
+- **As a** logged-in user,
+- **I want** to submit answers to questions,
+- **So that** I can help others and contribute to the community.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Links
 
-### Making a Progressive Web App
+- **Frontend Repository**: [Project4-Frontend-React-App](https://github.com/kevinfrayed-knot/Project4-Frontend-React-App)
+- **Backend Repository**: [project4-backend-server](https://github.com/kevinfrayed-knot/project4-backend-server)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## Wireframe
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Wireframe Layout Description
 
-### Deployment
+```
++-----------------------------------------------------------+
+| Navbar (New Category | New Question | Logout)            |
++-----------------------------------------------------------+
+| Sidebar (Categories)   | Main Content Area                |
+|------------------------|----------------------------------|
+| - General              | [Question List or New Question] |
+| - Web Development      |                                  |
+| - HTML                 |                                  |
+| - CSS                  |                                  |
+| - JavaScript           |                                  |
+| - Node.js              |                                  |
++------------------------+----------------------------------+
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Main Components
 
-### `npm run build` fails to minify
+1. **Navbar**: Contains "New Category", "New Question", and "Logout" links.
+2. **Sidebar**: Displays a list of categories.
+3. **Main Content Area**: Displays questions, question details, or forms depending on user interaction.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+

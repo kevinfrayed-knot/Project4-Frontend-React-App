@@ -1,0 +1,47 @@
+/* src/components/CategoryPage/NewQuestionForm.css */
+
+.new-question-form-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 20px auto;
+  }
+  
+  .new-question-form-container h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+  .new-question-form-container form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .new-question-form-container label {
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  .new-question-form-container input,
+  .new-question-form-container textarea {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .new-question-form-container button {
+    padding: 10px 15px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .new-question-form-container button:hover {
+    background-color: #218838;
+  }
+  
