@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Project4-Frontend-React-App/static/css/main.868d7e8c.css",
-    "main.js": "/Project4-Frontend-React-App/static/js/main.26bf0c80.js",
+    "main.css": "/Project4-Frontend-React-App/static/css/main.ae229d25.css",
+    "main.js": "/Project4-Frontend-React-App/static/js/main.96930b63.js",
     "static/js/462.b54dc206.chunk.js": "/Project4-Frontend-React-App/static/js/462.b54dc206.chunk.js",
     "index.html": "/Project4-Frontend-React-App/index.html",
-    "main.868d7e8c.css.map": "/Project4-Frontend-React-App/static/css/main.868d7e8c.css.map",
-    "main.26bf0c80.js.map": "/Project4-Frontend-React-App/static/js/main.26bf0c80.js.map",
+    "main.ae229d25.css.map": "/Project4-Frontend-React-App/static/css/main.ae229d25.css.map",
+    "main.96930b63.js.map": "/Project4-Frontend-React-App/static/js/main.96930b63.js.map",
     "462.b54dc206.chunk.js.map": "/Project4-Frontend-React-App/static/js/462.b54dc206.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.868d7e8c.css",
-    "static/js/main.26bf0c80.js"
+    "static/css/main.ae229d25.css",
+    "static/js/main.96930b63.js"
   ]
 }
