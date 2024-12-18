@@ -2,26 +2,45 @@
 
 /* src/components/HomePage/CategoryList.css */
 
+.category-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.new-category-button {
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.new-category-button:hover {
+  background-color: #0056b3;
+}
+
 .category-list {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .category-item {
-    padding: 8px;
-    margin-bottom: 5px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    cursor: pointer;
-    background-color: #fff;
-  }
-  
-  .category-item:hover {
-    background-color: #f0f0f0;
-  }
-  
-  .category-item.selected {
-    background-color: #007bff;
-    color: #fff;
-  }
-  
+  list-style: none;
+  padding: 0;
+}
+
+.category-item {
+  margin-bottom: 10px;
+}
+
+.category-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #f4f4f4;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  text-align: left;
+}
+
+.category-button:hover {
+  background-color: #e0e0e0;
+}

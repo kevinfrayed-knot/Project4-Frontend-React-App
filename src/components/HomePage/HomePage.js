@@ -1,52 +1,49 @@
 
 
-// src/components/HomePage/HomePage.js
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import CategoryList from '../HomePage/CategoryList';
 import QuestionList from '../CategoryPage/QuestionList';
-import QuestionsDetailPage from '../QuestionDetailPage/QuestionsDetailPage'; // Correct import
+import QuestionsDetailPage from '../QuestionDetailPage/QuestionsDetailPage';
 import LoginPage from '../Auth/LoginPage';
+import NewCategoryForm from '../CategoryPage/NewCategoryForm';
 import './HomePage.css';
 
 const HomePage = () => {
   const { isAuthenticated } = useContext(AuthContext);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedQuestionId, setSelectedQuestionId] = useState(null);
+  const [showNewCategoryForm, setShowNewCategoryForm] = useState(false);
 
   const onSelectQuestion = (questionId) => {
-    console.log('Navigating to question with ID:', questionId);
     setSelectedQuestionId(questionId);
   };
 
+  const onAddCategory = () => {
+    setShowNewCategoryForm(true);
+  };
+
   return (
-    <div>
+    <div className="home-page-container">
       {isAuthenticated ? (
-        <div className="homepage-container">
-          {/* Sidebar for Categories */}
+        <>
           <div className="sidebar">
-            <h2 className="categories-title">Categories</h2>
-            <CategoryList onSelectCategory={(categoryId) => setSelectedCategory(categoryId)} />
+            <CategoryList onSelectCategory={setSelectedCategory} onAddCategory={onAddCategory} />
           </div>
 
-          {/* Main Content for Questions and Question Details */}
           <div className="main-content">
-            <h2 className="questions-title">Questions</h2>
-            {selectedCategory ? (
+            {showNewCategoryForm ? (
+              <NewCategoryForm />
+            ) : selectedCategory ? (
               <>
                 <QuestionList categoryId={selectedCategory} onSelectQuestion={onSelectQuestion} />
-                {selectedQuestionId && (
-                  <div style={{ marginTop: '20px' }}>
-                    <h2>Question Details</h2>
-                    <QuestionsDetailPage questionId={selectedQuestionId} />
-                  </div>
-                )}
+                {selectedQuestionId && <QuestionsDetailPage questionId={selectedQuestionId} />}
               </>
             ) : (
               <p>Please select a category to view questions.</p>
             )}
           </div>
-        </div>
+        </>
       ) : (
         <LoginPage />
       )}
@@ -55,4 +52,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-
