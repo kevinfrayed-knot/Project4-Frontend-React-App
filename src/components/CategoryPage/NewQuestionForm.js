@@ -2,13 +2,13 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import axiosInstance from '../../axiosConfig'; // Import axiosInstance
-
+import axiosInstance from '../../axiosConfig';
+import './NewQuestionForm.css';
 
 const NewQuestionForm = ({ onQuestionAdded, userId }) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [categories, setCategories] = useState([]);  // State to store categories
+  const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
 
   // Fetch categories when the component loads
@@ -28,9 +28,9 @@ const NewQuestionForm = ({ onQuestionAdded, userId }) => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     console.log('Token in sessionStorage before POST request:', sessionStorage.getItem('token'));
-  
+
     try {
       const response = await axiosInstance.post('/questions', {
         title,
@@ -38,12 +38,12 @@ const NewQuestionForm = ({ onQuestionAdded, userId }) => {
         categoryId: selectedCategory,
         userId,
       });
-  
+
       console.log('Question added successfully:', response.data);
       setTitle('');
       setContent('');
       setSelectedCategory('');
-  
+
       if (onQuestionAdded) {
         onQuestionAdded();
       }
@@ -51,12 +51,11 @@ const NewQuestionForm = ({ onQuestionAdded, userId }) => {
       console.error('Error adding new question:', error);
     }
   };
-  
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h3>Ask a New Question</h3>
-      <div>
+    <div className="new-question-form-container">
+      <form className="new-question-form" onSubmit={handleSubmit}>
+        <h3>Ask a New Question</h3>
         <input
           type="text"
           placeholder="Title"
@@ -64,16 +63,12 @@ const NewQuestionForm = ({ onQuestionAdded, userId }) => {
           onChange={(e) => setTitle(e.target.value)}
           required
         />
-      </div>
-      <div>
         <textarea
           placeholder="Content"
           value={content}
           onChange={(e) => setContent(e.target.value)}
           required
         />
-      </div>
-      <div>
         <select
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
@@ -86,11 +81,12 @@ const NewQuestionForm = ({ onQuestionAdded, userId }) => {
             </option>
           ))}
         </select>
-      </div>
-      <button type="submit">Submit Question</button>
-    </form>
+        <button type="submit">Submit Question</button>
+      </form>
+    </div>
   );
 };
 
 export default NewQuestionForm;
+
 
