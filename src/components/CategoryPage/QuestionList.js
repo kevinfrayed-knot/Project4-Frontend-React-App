@@ -13,10 +13,15 @@ const QuestionList = ({ categoryId, onSelectQuestion }) => {
 
   useEffect(() => {
     const fetchQuestions = async () => {
+      setLoading(true);
+      setError(null); // Clear any previous errors
+      setQuestions([]); // Clear previous data
+
       try {
         console.log('categoryId:', categoryId);
         const response = await axiosInstance.get(`/questions/category/${categoryId}`);
-        setQuestions(response.data);
+        console.log('Fetched questions:', response.data); // Debugging log
+        setQuestions(Array.isArray(response.data) ? response.data : []);
       } catch (err) {
         console.error('Error fetching questions:', err);
         setError('Failed to fetch questions. Please try again later.');
@@ -38,25 +43,36 @@ const QuestionList = ({ categoryId, onSelectQuestion }) => {
     return <p className="error-message">{error}</p>;
   }
 
+  if (!Array.isArray(questions) || questions.length === 0) {
+    return (
+      <div className="question-list">
+        <div className="question-list-header">
+          <h3 className="question-list-title">Questions</h3>
+        </div>
+        <p className="no-questions-message">No questions available for this category.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="question-list">
-      <h3 className="question-list-title">Questions</h3>
-      {questions.length > 0 ? (
-        questions.map((question) => (
-          <QuestionCard 
-            key={question._id} 
-            question={question} 
-            onClick={() => onSelectQuestion(question._id)}  // Ensure this line is correct
-          />
-        ))
-      ) : (
-        <p className="no-questions-message">No questions available for this category.</p>
-      )}
+      <div className="question-list-header">
+        <h3 className="question-list-title">Questions</h3>
+      </div>
+      {questions.map((question) => (
+        <QuestionCard
+          key={question._id}
+          question={question}
+          onClick={() => onSelectQuestion(question._id)}
+        />
+      ))}
     </div>
   );
 };
 
 export default QuestionList;
+
+
 
 
 
