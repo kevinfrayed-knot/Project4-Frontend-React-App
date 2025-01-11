@@ -4,6 +4,7 @@
 import React, { useState } from 'react';
 import axiosInstance from '../../axiosConfig';
 import { useNavigate } from 'react-router-dom';
+import './NewCategoryForm.css';
 
 const NewCategoryForm = () => {
   const [name, setName] = useState('');
@@ -23,9 +24,9 @@ const NewCategoryForm = () => {
   };
 
   return (
-    <div>
-      <h2>Create New Category</h2>
-      <form onSubmit={handleSubmit}>
+    <div className="new-category-form-container">
+      <form className="new-category-form" onSubmit={handleSubmit}>
+        <h2>Create New Category</h2>
         <div>
           <label htmlFor="categoryName">Category Name:</label>
           <input
@@ -37,11 +38,10 @@ const NewCategoryForm = () => {
           />
         </div>
         <button type="submit">Create Category</button>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
+        {error && <p className="error-message">{error}</p>}
       </form>
     </div>
   );
 };
 
 export default NewCategoryForm;
-

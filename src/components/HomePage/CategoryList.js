@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 import axios from '../../axiosConfig';
 import './CategoryList.css';
 
-const CategoryList = ({ onSelectCategory, onAddCategory }) => {
+const CategoryList = ({ onSelectCategory }) => {
   const [categories, setCategories] = useState([]);
   const [error, setError] = useState(null);
 
@@ -29,9 +29,7 @@ const CategoryList = ({ onSelectCategory, onAddCategory }) => {
 
   return (
     <div className="category-list-container">
-      <button className="new-category-button" onClick={onAddCategory}>
-        + New Category
-      </button>
+      {/* Removed the redundant New Category button */}
       <ul className="category-list">
         {categories.map((category) => (
           <li key={category._id} className="category-item">
@@ -49,4 +47,3 @@ const CategoryList = ({ onSelectCategory, onAddCategory }) => {
 };
 
 export default CategoryList;
-

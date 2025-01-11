@@ -1,0 +1,59 @@
+
+
+/* src/components/CategoryPage/NewCategoryForm.css */
+
+.new-category-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .new-category-form {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .new-category-form input,
+  .new-category-form button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .new-category-form button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .new-category-form button:hover {
+    background-color: #218838;
+  }
+  
+  .new-category-form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  .error-message {
+    color: red;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
